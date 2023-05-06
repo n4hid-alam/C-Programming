@@ -1,0 +1,47 @@
+pass by value:
+in c language, when we send ami variable to a function , it makes
+a copy of that variable in the function, which has no relation with
+the variable exist in main function. memory address of both variable 
+are different. we just send value not variable itself. any changes occur in the called function variable won't 
+affect the variabel of main function.
+
+#include <stdio.h>
+
+void func (int n) // here this function makes a copy on variable n 
+{                 // it's not the actual n. we just send the value
+    n = 100;      // of variable n. so changes in n won't change the
+}                 // the value of n in main.
+
+int main()
+{
+    int n = 55;
+
+    func (n);
+    printf("%d", n); // n = 55 , will be printed
+
+    return 0;
+}
+
+
+pass by reference:
+In pass by reference , we send the actual variable not value. that means
+we send the memory address of the variable (main). so any changes in
+variable from called function changes the value in main.
+
+#include <stdio.h>
+
+void func (int *n) // here we receive memory address of variable
+{
+    *n = 100;       // changing the value here means we changing the
+                   // of the variable that stored in that memory address
+}
+
+int main()
+{
+    int n = 5;
+
+    func (&n); // we are sending memory location of variable n
+    printf ("%d\n", n); // n = 100
+
+    return 0;
+}
